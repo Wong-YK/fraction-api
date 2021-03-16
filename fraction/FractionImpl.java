@@ -12,8 +12,20 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
+    private int num;
+    private int denom;
+
     public FractionImpl(int numerator, int denominator) {
-        // TODO
+        if (denominator==0) {
+            throw new ArithmeticException("Denominator must be a non-zero value");
+        }
+        else if (denominator<0) {
+            numerator*=-1;
+            denominator*=-1;
+        }
+        int gcd = greatestCommonDenominator(numerator, denominator);
+        this.num = numerator/gcd;
+        this.denom = denominator/gcd;
     }
 
     /**
@@ -22,7 +34,8 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        // TODO
+        this.num = wholeNumber;
+        this.denom = 1;
     }
 
     /**
@@ -37,7 +50,9 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        // TODO
+        if (fraction.contains('/')) {
+
+        }
     }
 
     /**
@@ -135,4 +150,51 @@ public class FractionImpl implements Fraction {
     public String toString() {
         return null;
     }
+
+    public static int greatestCommonDenominator(int i, int j) {
+        if (i==0 || j==0) {
+            throw new ArithmeticException("GCD algorithm accepts only non-zero inputs");
+        }
+        while (i!=0 && j!=0) {
+            if (i>j) {
+                i%=j;
+            }
+            else {
+                j%=i;
+            }
+        }
+        if (i!=0) {
+            return i;
+        }
+        else {
+            return j;
+        }
+    }
+
+    public static int stringToNumerator(String s) {
+        int divisionIndex = s.indexOf('/');
+        char[] arr = s.toCharArray();
+        String numString = "";
+        for (int i = 0; i<divisionIndex; i++) {
+            numString+=arr[i];
+        }
+        numString = numString.trim();
+        int result = Integer.parseInt(numString);
+        return result;
+    }
+
+    public static int stringToDenominator(String s) {
+        int divisionIndex = s.indexOf('/');
+        char[] arr = s.toCharArray();
+        String denomString = "";
+        for (int i = divisionIndex+1; i<arr.length; i++) {
+            denomString+=arr[i];
+        }
+        denomString = denomString.trim();
+        int result = Integer.parseInt(denomString);
+        return result;
+    }
+
+
+
 }
