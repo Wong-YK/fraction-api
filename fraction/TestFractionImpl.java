@@ -60,4 +60,11 @@ public class TestFractionImpl {
         assertEquals(expected_num, f3.num);
         assertEquals(expected_denom, f3.denom);
     }
+
+    @Test
+    public void equalsTest() {
+        FractionImpl f1 = new FractionImpl(2, 5);
+        FractionImpl f2 = new FractionImpl(2, 5);
+        assertTrue(f1.equals(f2));
+    }
 }
