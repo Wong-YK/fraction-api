@@ -50,9 +50,17 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        if (fraction.contains('/')) {
-
+        int num;
+        int denom;
+        if (fraction.contains("/")) {
+            num = stringToNumerator(fraction);
+            denom = stringToDenominator(fraction);
         }
+        else {
+            num = Integer.parseInt(fraction);
+            denom = 1;
+        }
+        new FractionImpl(num,denom);
     }
 
     /**
