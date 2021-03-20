@@ -54,11 +54,9 @@ public class TestFractionImpl {
     public void addTest1() {
         FractionImpl f1 = new FractionImpl(1, 10);
         FractionImpl f2 = new FractionImpl(3, 15);
-        FractionImpl f3 = (FractionImpl) f1.add(f2);
-        int expected_num = 3;
-        int expected_denom = 10;
-        assertEquals(expected_num, f3.num);
-        assertEquals(expected_denom, f3.denom);
+        FractionImpl actual = (FractionImpl) f1.add(f2);
+        FractionImpl expected = new FractionImpl(3, 10);
+        assertTrue(actual.equals(expected));
     }
 
     @Test

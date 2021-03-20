@@ -12,6 +12,7 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
+    //TODO change these variables back to private
     private int num;
     private int denom;
 
@@ -57,7 +58,7 @@ public class FractionImpl implements Fraction {
             denom = stringToDenominator(fraction);
         }
         else {
-            num = Integer.parseInt(fraction);
+            num = Integer.parseInt(fraction.trim());
             denom = 1;
         }
         new FractionImpl(num,denom);
@@ -68,7 +69,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        return null;
+        int numerator = (this.num * ((FractionImpl) f).denom) + (((FractionImpl) f).num * this.denom);
+        int denominator = this.denom * ((FractionImpl) f).denom;
+        return new FractionImpl(numerator, denominator);
     }
 
     /**
@@ -124,7 +127,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        FractionImpl f1 = (FractionImpl) obj;
+        return this.num==f1.num && this.denom==f1.denom;
     }
 
     /**
