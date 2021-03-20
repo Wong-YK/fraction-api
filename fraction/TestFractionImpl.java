@@ -69,6 +69,15 @@ public class TestFractionImpl {
     }
 
     @Test
+    public void multiplyTest1() {
+        FractionImpl f1 = new FractionImpl(3, 5);
+        FractionImpl f2 = new FractionImpl(2, 16);
+        FractionImpl actual = (FractionImpl) f1.multiply(f2);
+        FractionImpl expected = new FractionImpl(3, 40);
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
     public void equalsTest1() {
         FractionImpl f1 = new FractionImpl(2, 5);
         FractionImpl f2 = new FractionImpl(2, 5);
