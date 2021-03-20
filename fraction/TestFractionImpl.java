@@ -60,9 +60,16 @@ public class TestFractionImpl {
     }
 
     @Test
-    public void equalsTest() {
+    public void equalsTest1() {
         FractionImpl f1 = new FractionImpl(2, 5);
         FractionImpl f2 = new FractionImpl(2, 5);
+        assertTrue(f1.equals(f2));
+    }
+
+    @Test
+    public void equalsTest2() {
+        FractionImpl f1 = new FractionImpl(1, 8);
+        FractionImpl f2 = new FractionImpl(8, 64);
         assertTrue(f1.equals(f2));
     }
 }
