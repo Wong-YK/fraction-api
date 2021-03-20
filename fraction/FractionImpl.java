@@ -112,7 +112,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction abs() {
-        return null;
+        if (this.numerator<0) {
+            int numerator = this.numerator * -1;
+            return new FractionImpl(numerator, this.denominator);
+        }
+        else {
+            return this;
+        }
     }
 
     /**
@@ -173,6 +179,8 @@ public class FractionImpl implements Fraction {
     }
 
     public static int greatestCommonDenominator(int i, int j) {
+        if (i<0) i*=-1;
+        if (j<0) j*=-1;
         if (i==0 || j==0) {
             throw new ArithmeticException("GCD algorithm accepts only non-zero inputs");
         }
