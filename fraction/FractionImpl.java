@@ -12,9 +12,8 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
-    //TODO change these variables back to private
-    private int num;
-    private int denom;
+    private int numerator;
+    private int denominator;
 
     public FractionImpl(int numerator, int denominator) {
         if (denominator==0) {
@@ -25,8 +24,8 @@ public class FractionImpl implements Fraction {
             denominator*=-1;
         }
         int gcd = greatestCommonDenominator(numerator, denominator);
-        this.num = numerator/gcd;
-        this.denom = denominator/gcd;
+        this.numerator = numerator/gcd;
+        this.denominator = denominator/gcd;
     }
 
     /**
@@ -35,8 +34,8 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        this.num = wholeNumber;
-        this.denom = 1;
+        this.numerator = wholeNumber;
+        this.denominator = 1;
     }
 
     /**
@@ -69,8 +68,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        int numerator = (this.num * ((FractionImpl) f).denom) + (((FractionImpl) f).num * this.denom);
-        int denominator = this.denom * ((FractionImpl) f).denom;
+        FractionImpl f1 = (FractionImpl) f;
+        int numerator = (this.numerator * f1.denominator) + (f1.numerator * this.denominator);
+        int denominator = this.denominator * ((FractionImpl) f).denominator;
         return new FractionImpl(numerator, denominator);
     }
 
@@ -79,7 +79,10 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction subtract(Fraction f) {
-        return null;
+        FractionImpl f1 = (FractionImpl) f;
+        int numerator = (this.numerator * f1.denominator) - (f1.numerator * this.denominator);
+        int denominator = this.denominator * f1.denominator;
+        return new FractionImpl(numerator, denominator);
     }
 
     /**
@@ -128,7 +131,7 @@ public class FractionImpl implements Fraction {
     @Override
     public boolean equals(Object obj) {
         FractionImpl f1 = (FractionImpl) obj;
-        return this.num==f1.num && this.denom==f1.denom;
+        return this.numerator==f1.numerator && this.denominator==f1.denominator;
     }
 
     /**
