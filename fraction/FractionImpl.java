@@ -90,7 +90,10 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction multiply(Fraction f) {
-        return null;
+        FractionImpl f1 = (FractionImpl) f;
+        numerator = this.numerator * f1.numerator;
+        denominator = this.denominator * f1.denominator;
+        return new FractionImpl(numerator, denominator);
     }
 
     /**
@@ -98,7 +101,10 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction divide(Fraction f) {
-        return null;
+        FractionImpl f1 = (FractionImpl) f;
+        numerator = this.numerator * f1.denominator;
+        denominator = this.denominator * f1.numerator;
+        return new FractionImpl(numerator, denominator);
     }
 
     /**
