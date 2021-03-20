@@ -78,6 +78,15 @@ public class TestFractionImpl {
     }
 
     @Test
+    public void divideTest1() {
+        FractionImpl f1 = new FractionImpl(1, 3);
+        FractionImpl f2 = new FractionImpl(2, 3);
+        FractionImpl actual = (FractionImpl) f1.divide(f2);
+        FractionImpl expected = new FractionImpl(1, 2);
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
     public void equalsTest1() {
         FractionImpl f1 = new FractionImpl(2, 5);
         FractionImpl f2 = new FractionImpl(2, 5);
