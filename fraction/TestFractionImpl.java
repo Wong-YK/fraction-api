@@ -20,13 +20,21 @@ public class TestFractionImpl {
     }
 
     @Test (expected = ArithmeticException.class)
-    public void greatestCommonDenominatorTest3() {
+    public void greatestCommonDenominatorTest4() {
         int gcd = FractionImpl.greatestCommonDenominator(0, 61);
     }
 
     @Test (expected = ArithmeticException.class)
     public void greatestCommonDenominator() {
         int gcd = FractionImpl.greatestCommonDenominator(10, 0);
+    }
+
+    @Test
+    public void greatestCommonDenominatorTest5() {
+        int actual = FractionImpl.greatestCommonDenominator(-2, 6);
+        int expected = 2;
+        assertEquals(expected, actual);
+
     }
 
     @Test
@@ -99,6 +107,23 @@ public class TestFractionImpl {
         FractionImpl f1 = new FractionImpl(3, 14);
         FractionImpl actual = (FractionImpl) f1.abs();
         FractionImpl expected = new FractionImpl(3, 14);
+        assertTrue(actual.equals(expected));
+    }
+
+
+    @Test
+    public void negateTest1() {
+        FractionImpl f1 = new FractionImpl(2, 5);
+        FractionImpl actual = (FractionImpl) f1.negate();
+        FractionImpl expected = new FractionImpl(-2, 5);
+        assertTrue(actual.equals(expected));
+    }
+
+    @Test
+    public void negateTest2() {
+        FractionImpl f1 = new FractionImpl(-3, 5);
+        FractionImpl actual = (FractionImpl) f1.negate();
+        FractionImpl expected = new FractionImpl(3, 5);
         assertTrue(actual.equals(expected));
     }
 

@@ -126,7 +126,8 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction negate() {
-        return null;
+        int numerator = this.numerator*-1;
+        return new FractionImpl(numerator, this.denominator);
     }
 
     /**
@@ -178,6 +179,7 @@ public class FractionImpl implements Fraction {
         return null;
     }
 
+    // TODO verify that this solution works for negative numbers (i.e. just calulating GCD for their abs values)
     public static int greatestCommonDenominator(int i, int j) {
         if (i<0) i*=-1;
         if (j<0) j*=-1;
