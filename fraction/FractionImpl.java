@@ -143,6 +143,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
+        if (!(obj instanceof FractionImpl)) {
+            return false;
+        }
         FractionImpl f1 = (FractionImpl) obj;
         return this.numerator==f1.numerator && this.denominator==f1.denominator;
     }
@@ -160,7 +163,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
-        return null;
+        int numerator = this.denominator;
+        int denominator = this.numerator;
+        return new FractionImpl(numerator, denominator);
     }
 
     /**

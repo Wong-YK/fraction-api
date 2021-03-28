@@ -140,4 +140,20 @@ public class TestFractionImpl {
         FractionImpl f2 = new FractionImpl(8, 64);
         assertTrue(f1.equals(f2));
     }
+
+    @Test
+    public void inverseTest1() {
+        FractionImpl f1 = new FractionImpl(2, 5);
+        FractionImpl actual = (FractionImpl) f1.inverse();
+        FractionImpl expected = new FractionImpl(5, 2);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void compareToTest1() {
+        FractionImpl f1 = new FractionImpl(4, 5);
+        FractionImpl f2 = new FractionImpl(1, 2);
+        assertEquals(1, )
+    }
+
 }
