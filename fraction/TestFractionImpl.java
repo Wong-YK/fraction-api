@@ -170,4 +170,18 @@ public class TestFractionImpl {
         assertEquals(0, f1.compareTo(f2));
     }
 
+    @Test
+    public void toStringTest1() {
+        FractionImpl f = new FractionImpl(5, 1);
+        String actual = f.toString();
+        assertEquals("5", actual);
+    }
+
+    @Test
+    public void toStringTest2() {
+        FractionImpl f = new FractionImpl(-2, 5);
+        String actual = f.toString();
+        assertEquals("-2/5", actual);
+    }
+
 }

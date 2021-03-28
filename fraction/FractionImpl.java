@@ -192,7 +192,12 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        return null;
+        if (this.denominator==1) {
+            return "" + this.numerator;
+        }
+        else {
+            return String.format("%d/%d", this.numerator, this.denominator);
+        }
     }
 
     // TODO verify that this solution works for negative numbers (i.e. just calulating GCD for their abs values)
