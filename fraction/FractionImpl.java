@@ -60,7 +60,9 @@ public class FractionImpl implements Fraction {
             num = Integer.parseInt(fraction.trim());
             denom = 1;
         }
-        new FractionImpl(num,denom);
+        FractionImpl f = new FractionImpl(num,denom);
+        this.numerator = f.numerator;
+        this.denominator = f.denominator;
     }
 
     /**

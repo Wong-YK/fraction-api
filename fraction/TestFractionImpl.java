@@ -68,12 +68,39 @@ public class TestFractionImpl {
     }
 
     @Test
+    public void addTest2() {
+        FractionImpl f1 = new FractionImpl(5);
+        FractionImpl f2 = new FractionImpl(3);
+        FractionImpl actual = (FractionImpl) f1.add(f2);
+        FractionImpl expected = new FractionImpl(8, 1);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void addTest3() {
+        FractionImpl f1 = new FractionImpl("2/6");
+        FractionImpl f2 = new FractionImpl(" 3/7 ");
+        FractionImpl actual = (FractionImpl) f1.add(f2);
+        FractionImpl expected = new FractionImpl(16, 21);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void addTest4() {
+        FractionImpl f1 = new FractionImpl("5/6");
+        FractionImpl f2 = new FractionImpl("4/-12");
+        FractionImpl actual = (FractionImpl) f1.add(f2);
+        FractionImpl expected = new FractionImpl(1, 2);
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void subtractTest1() {
         FractionImpl f1 = new FractionImpl(1, 2);
         FractionImpl f2 = new FractionImpl(1, 8);
         FractionImpl actual = (FractionImpl) f1.subtract(f2);
         FractionImpl expected = new FractionImpl(3, 8);
-        assertTrue(actual.equals(expected));
+        assertEquals(actual, expected);
     }
 
     @Test
@@ -82,7 +109,7 @@ public class TestFractionImpl {
         FractionImpl f2 = new FractionImpl(2, 16);
         FractionImpl actual = (FractionImpl) f1.multiply(f2);
         FractionImpl expected = new FractionImpl(3, 40);
-        assertTrue(actual.equals(expected));
+        assertEquals(actual, expected);
     }
 
     @Test
