@@ -173,7 +173,18 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public int compareTo(Fraction o) {
-        return 0;
+        FractionImpl f1 = (FractionImpl) o;
+        int num1 = this.numerator * f1.denominator;
+        int num2 = f1.numerator * this.denominator;
+        if (num1>num2) {
+            return 1;
+        }
+        else if (num2>num1) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
     }
 
     /**

@@ -153,7 +153,7 @@ public class TestFractionImpl {
     public void compareToTest1() {
         FractionImpl f1 = new FractionImpl(4, 5);
         FractionImpl f2 = new FractionImpl(1, 2);
-        assertEquals(1, )
+        assertEquals(1, f1.compareTo(f2));
     }
 
 }
