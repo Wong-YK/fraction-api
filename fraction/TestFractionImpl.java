@@ -156,4 +156,18 @@ public class TestFractionImpl {
         assertEquals(1, f1.compareTo(f2));
     }
 
+    @Test
+    public void compareToTest2() {
+        FractionImpl f1 = new FractionImpl(-4, 5);
+        FractionImpl f2 = new FractionImpl(1, 2);
+        assertEquals(-1, f1.compareTo(f2));
+    }
+
+    @Test
+    public void compareToTest3() {
+        FractionImpl f1 = new FractionImpl(4, -16);
+        FractionImpl f2 = new FractionImpl(-1, 4);
+        assertEquals(0, f1.compareTo(f2));
+    }
+
 }
