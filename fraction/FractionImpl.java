@@ -23,9 +23,15 @@ public class FractionImpl implements Fraction {
             numerator*=-1;
             denominator*=-1;
         }
-        int gcd = greatestCommonDenominator(numerator, denominator);
-        this.numerator = numerator/gcd;
-        this.denominator = denominator/gcd;
+        if (numerator==0) {
+            this.numerator=0;
+            this.denominator=1;
+        }
+        else {
+            int gcd = greatestCommonDenominator(numerator, denominator);
+            this.numerator = numerator/gcd;
+            this.denominator = denominator/gcd;
+        }
     }
 
     /**
@@ -34,8 +40,9 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        this.numerator = wholeNumber;
-        this.denominator = 1;
+        FractionImpl f = new FractionImpl(wholeNumber, 1);
+        this.numerator = f.numerator;
+        this.denominator = f.denominator;
     }
 
     /**

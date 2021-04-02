@@ -26,7 +26,7 @@ public class TestFractionImpl {
 
     @Test (expected = ArithmeticException.class)
     public void greatestCommonDenominator() {
-        int gcd = FractionImpl.greatestCommonDenominator(10, 0);
+        int gcd = FractionImpl.greatestCommonDenominator(61, 0);
     }
 
     @Test
@@ -55,6 +55,79 @@ public class TestFractionImpl {
     public void stringToDenominatorTest1() {
         int actual = FractionImpl.stringToDenominator("3/15");
         int expected = 15;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl1Test1() {
+        FractionImpl actual = new FractionImpl(2, 4);
+        FractionImpl expected = new FractionImpl(1, 2);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl1Test2() {
+        FractionImpl actual = new FractionImpl(3, -4);
+        FractionImpl expected = new FractionImpl(-3, 4);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl1Test3() {
+        FractionImpl actual = new FractionImpl(0, -4);
+        FractionImpl expected = new FractionImpl(0, 1);
+        assertEquals(expected, actual);
+    }
+
+    @Test (expected = ArithmeticException.class)
+    public void FractionImpl1Test4() {
+        FractionImpl f = new FractionImpl(1, 0);
+    }
+
+    @Test
+    public void FractionImpl2Test1() {
+        FractionImpl actual = new FractionImpl(5);
+        FractionImpl expected = new FractionImpl(10, 2);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl2Test2() {
+        FractionImpl actual = new FractionImpl(-5);
+        FractionImpl expected = new FractionImpl(5, -1);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl3Test1() {
+        FractionImpl actual = new FractionImpl("2/4");
+        FractionImpl expected = new FractionImpl(1, 2);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl3Test2() {
+        FractionImpl actual = new FractionImpl("2/-4");
+        FractionImpl expected = new FractionImpl(-1, 2);
+        assertEquals(expected, actual);
+    }
+
+    @Test (expected = ArithmeticException.class)
+    public void FractionImpl3Test3() {
+        FractionImpl f = new FractionImpl("3/0");
+    }
+
+    @Test
+    public void FractionImpl3Test4() {
+        FractionImpl actual = new FractionImpl("4");
+        FractionImpl expected = new FractionImpl(4, 1);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FractionImpl3Test5() {
+        FractionImpl actual = new FractionImpl("  3   /  4 ");
+        FractionImpl expected = new FractionImpl(3, 4);
         assertEquals(expected, actual);
     }
 
