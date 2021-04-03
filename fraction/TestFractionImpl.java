@@ -5,6 +5,12 @@ import static org.junit.Assert.*;
 
 public class TestFractionImpl {
 
+    /*
+    Commented out tests below run and pass when the helper methods they test
+    are switched to public. They have been commented out since
+    these methods have now been switched to private
+    */
+
     @Test
     public void greatestCommonDenominatorTest1() {
         int actual = FractionImpl.greatestCommonDenominator(9, 3);
@@ -57,6 +63,7 @@ public class TestFractionImpl {
         int expected = 15;
         assertEquals(expected, actual);
     }
+
 
     @Test
     public void FractionImpl1Test1() {
@@ -280,21 +287,21 @@ public class TestFractionImpl {
     public void compareToTest1() {
         FractionImpl f1 = new FractionImpl(4, 5);
         FractionImpl f2 = new FractionImpl(1, 2);
-        assertEquals(1, f1.compareTo(f2));
+        assertTrue(f1.compareTo(f2)>0);
     }
 
     @Test
     public void compareToTest2() {
         FractionImpl f1 = new FractionImpl(-4, 5);
         FractionImpl f2 = new FractionImpl(1, 2);
-        assertEquals(-1, f1.compareTo(f2));
+        assertTrue(f1.compareTo(f2)<0);
     }
 
     @Test
     public void compareToTest3() {
         FractionImpl f1 = new FractionImpl(4, -16);
         FractionImpl f2 = new FractionImpl(-1, 4);
-        assertEquals(0, f1.compareTo(f2));
+        assertTrue(f1.compareTo(f2)==0);
     }
 
     @Test

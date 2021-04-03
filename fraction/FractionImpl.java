@@ -79,7 +79,7 @@ public class FractionImpl implements Fraction {
     public Fraction add(Fraction f) {
         FractionImpl f1 = (FractionImpl) f;
         int numerator = (this.numerator * f1.denominator) + (f1.numerator * this.denominator);
-        int denominator = this.denominator * ((FractionImpl) f).denominator;
+        int denominator = this.denominator * f1.denominator;
         return new FractionImpl(numerator, denominator);
     }
 
@@ -121,12 +121,14 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction abs() {
+        // if the numerator is negative, multiply by -1 to make it positive
         if (this.numerator<0) {
             int numerator = this.numerator * -1;
             return new FractionImpl(numerator, this.denominator);
         }
+        // if the fraction is not negative, it is equal to its absolute value
         else {
-            return this;
+            return new FractionImpl(this.numerator, this.denominator);
         }
     }
 
@@ -152,7 +154,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof FractionImpl)) {
+        if (!(obj instanceof Fraction)) {
             return false;
         }
         FractionImpl f1 = (FractionImpl) obj;
@@ -183,17 +185,13 @@ public class FractionImpl implements Fraction {
     @Override
     public int compareTo(Fraction o) {
         FractionImpl f1 = (FractionImpl) o;
+        /*
+        scale the numerators of each fraction as you would prior to adding
+        two fractions. The greater fraction will then have a greater numerator
+        */
         int num1 = this.numerator * f1.denominator;
         int num2 = f1.numerator * this.denominator;
-        if (num1>num2) {
-            return 1;
-        }
-        else if (num2>num1) {
-            return -1;
-        }
-        else {
-            return 0;
-        }
+        return num1 - num2;
     }
 
     /**
@@ -201,6 +199,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
+        // if the denominator is 1, return the numerator (as a String)
         if (this.denominator==1) {
             return "" + this.numerator;
         }
