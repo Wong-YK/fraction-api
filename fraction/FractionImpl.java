@@ -210,25 +210,34 @@ public class FractionImpl implements Fraction {
 
     // TODO verify that this solution works for negative numbers (i.e. just calulating GCD for their abs values)
     public static int greatestCommonDenominator(int i, int j) {
-        if (i<0) i*=-1;
-        if (j<0) j*=-1;
+        // return an arithmetic exception if either i or j are equal to 0
         if (i==0 || j==0) {
-            throw new ArithmeticException("GCD algorithm accepts only non-zero inputs");
+            throw new ArithmeticException("greatestCommonDenominator() accepts only non-zero inputs");
         }
-        while (i!=0 && j!=0) {
-            if (i>j) {
-                i%=j;
+        /*
+        Set i and j to their respective absolute values. This deals with cases
+        where the absolute value of the smaller input integer is greater than
+        the absolute value of the larger input integer
+         */
+        if (i<0) {
+            i*=-1;
+        }
+        if (j<0) {
+            j*=-1;
+        }
+        int larger = i;
+        int smaller = j;
+        while (larger!=0) {
+            // ensure that smaller points to the smaller of the two numbers and larger to the larger
+            if (smaller>larger) {
+                int temp = larger;
+                larger = smaller;
+                smaller = temp;
             }
-            else {
-                j%=i;
-            }
+            // At each step of the GCD algorithm, larger is updated to equal larger mod smaller
+            larger = larger % smaller;
         }
-        if (i!=0) {
-            return i;
-        }
-        else {
-            return j;
-        }
+        return smaller;
     }
 
     public static int stringToNumerator(String s) {

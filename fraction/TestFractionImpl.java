@@ -37,10 +37,9 @@ public class TestFractionImpl {
 
     @Test
     public void greatestCommonDenominatorTest5() {
-        int actual = FractionImpl.greatestCommonDenominator(-2, 6);
+        int actual = FractionImpl.greatestCommonDenominator(-10, 2);
         int expected = 2;
         assertEquals(expected, actual);
-
     }
 
     @Test
