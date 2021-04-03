@@ -208,7 +208,12 @@ public class FractionImpl implements Fraction {
         }
     }
 
-    // TODO verify that this solution works for negative numbers (i.e. just calulating GCD for their abs values)
+    /*
+    Returns an int that is the greatest common denominator of i and j,
+    the two inputs which are both of type int. This is achieved using
+    Euclid's Algorithm. Throws an arithmetic exception where one or
+    both of the inputs of type int are equal to 0.
+    */
     public static int greatestCommonDenominator(int i, int j) {
         // return an arithmetic exception if either i or j are equal to 0
         if (i==0 || j==0) {
@@ -216,8 +221,7 @@ public class FractionImpl implements Fraction {
         }
         /*
         Set i and j to their respective absolute values. This deals with cases
-        where the absolute value of the smaller input integer is greater than
-        the absolute value of the larger input integer
+        where one or more of the input values is negative
          */
         if (i<0) {
             i*=-1;
