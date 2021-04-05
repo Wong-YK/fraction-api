@@ -224,12 +224,12 @@ public class FractionImpl implements Fraction {
     }
 
     /*
-    Returns an int that is the greatest common denominator of i and j,
+    Returns an int that is the greatest common divisor of i and j,
     which are both of type int. This is achieved using Euclid's Algorithm.
     Throws an arithmetic exception where one or both of the parameters
     are equal to 0.
     */
-    public static int greatestCommonDivisor(int i, int j) {
+    private static int greatestCommonDivisor(int i, int j) {
         // return an arithmetic exception if either i or j are equal to 0
         if (i==0 || j==0) {
             throw new ArithmeticException("i and j must be non-zero");
@@ -263,7 +263,7 @@ public class FractionImpl implements Fraction {
     Returns an int that is the numerator of a fraction represented
     by a String s
      */
-    public static int stringToNumerator(String s) {
+    private static int stringToNumerator(String s) {
         int divisionIndex = s.indexOf('/');
         char[] arr = s.toCharArray();
         String numString = "";
@@ -282,7 +282,7 @@ public class FractionImpl implements Fraction {
     Returns an int that is the denominator of a fraction represented
     by a String s.
      */
-    public static int stringToDenominator(String s) {
+    private static int stringToDenominator(String s) {
         int divisionIndex = s.indexOf('/');
         char[] arr = s.toCharArray();
         String denomString = "";

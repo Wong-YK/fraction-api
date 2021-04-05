@@ -6,10 +6,9 @@ import static org.junit.Assert.*;
 public class TestFractionImpl {
 
     /*
-    Commented out tests below run and pass when the helper methods they test
-    are switched to public. They have been commented out since
-    these methods have now been switched to private
-    */
+    The tests below are commented out because they are for private helper functions.
+    They have been written so that when these helper methods are switched to public
+    these tests will pass.
 
     // i and j are both positive numbers
     @Test
@@ -100,6 +99,8 @@ public class TestFractionImpl {
         int expected = -7;
         assertEquals(expected, actual);
     }
+
+    */
 
     // Constructor normalises fractions
     @Test
