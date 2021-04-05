@@ -20,14 +20,20 @@ public class FractionImpl implements Fraction {
         if (denominator==0) {
             throw new ArithmeticException("Denominator must be a non-zero value");
         }
+        // negative fractions are represented as having a negative numerator and a positive denominator
         else if (denominator<0) {
             numerator*=-1;
             denominator*=-1;
         }
+        // 0 is represented as having a numerator of 0 and a denominator of 1
         if (numerator==0) {
             this.numerator=0;
             this.denominator=1;
         }
+        /*
+        Normalize the fraction by dividing numerator and denominator by
+        their greatest common denominator
+         */
         else {
             int gcd = greatestCommonDenominator(numerator, denominator);
             this.numerator = numerator/gcd;
@@ -41,9 +47,8 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        FractionImpl f = new FractionImpl(wholeNumber, 1);
-        this.numerator = f.numerator;
-        this.denominator = f.denominator;
+        this.numerator = wholeNumber;
+        this.denominator = 1;
     }
 
     /**
@@ -60,14 +65,24 @@ public class FractionImpl implements Fraction {
     public FractionImpl(String fraction) {
         int num;
         int denom;
+        /*
+         if the String, fraction, contains "/", use stringToNumerator and
+         stringToDenominator() to generate int representations of the numerator
+         and denominator
+         */
         if (fraction.contains("/")) {
             num = stringToNumerator(fraction);
             denom = stringToDenominator(fraction);
         }
+        // if there is no "/" in the String, fraction, the denominator is equal to 1
         else {
             num = Integer.parseInt(fraction.trim());
             denom = 1;
         }
+        /*
+         Pass the int representations of the numerator and denominator to the constructor
+         that takes two int parameters
+         */
         FractionImpl f = new FractionImpl(num,denom);
         this.numerator = f.numerator;
         this.denominator = f.denominator;
@@ -158,8 +173,8 @@ public class FractionImpl implements Fraction {
         if (!(obj instanceof Fraction)) {
             return false;
         }
-        FractionImpl f1 = (FractionImpl) obj;
-        return this.numerator==f1.numerator && this.denominator==f1.denominator;
+        FractionImpl f = (FractionImpl) obj;
+        return this.numerator==f.numerator && this.denominator==f.denominator;
     }
 
     /**
@@ -185,13 +200,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public int compareTo(Fraction o) {
-        FractionImpl f1 = (FractionImpl) o;
+        FractionImpl f = (FractionImpl) o;
         /*
         scale the numerators of each fraction as you would prior to adding
         two fractions. The greater fraction will then have a greater numerator
         */
-        int num1 = this.numerator * f1.denominator;
-        int num2 = f1.numerator * this.denominator;
+        int num1 = this.numerator * f.denominator;
+        int num2 = f.numerator * this.denominator;
         return num1 - num2;
     }
 
@@ -211,14 +226,14 @@ public class FractionImpl implements Fraction {
 
     /*
     Returns an int that is the greatest common denominator of i and j,
-    the two inputs which are both of type int. This is achieved using
-    Euclid's Algorithm. Throws an arithmetic exception where one or
-    both of the inputs of type int are equal to 0.
+    which are both of type int. This is achieved using Euclid's Algorithm.
+    Throws an arithmetic exception where one or both of the parameters
+    are equal to 0.
     */
     public static int greatestCommonDenominator(int i, int j) {
         // return an arithmetic exception if either i or j are equal to 0
         if (i==0 || j==0) {
-            throw new ArithmeticException("greatestCommonDenominator() accepts only non-zero inputs");
+            throw new ArithmeticException("i and j must be non-zero");
         }
         /*
         Set i and j to their respective absolute values. This deals with cases
@@ -247,33 +262,36 @@ public class FractionImpl implements Fraction {
 
     /*
     Returns an int that is the numerator of a fraction represented
-    by a String, s.
+    by a String s
      */
     public static int stringToNumerator(String s) {
         int divisionIndex = s.indexOf('/');
         char[] arr = s.toCharArray();
         String numString = "";
+        /*
+         create a string representation of the numerator by using the
+         characters that come before "/"
+         */
         for (int i = 0; i<divisionIndex; i++) {
             numString+=arr[i];
         }
         numString = numString.trim();
-        int result = Integer.parseInt(numString);
-        return result;
+        return Integer.parseInt(numString);
     }
 
     /*
     Returns an int that is the denominator of a fraction represented
-    by a String, s.
+    by a String s.
      */
     public static int stringToDenominator(String s) {
         int divisionIndex = s.indexOf('/');
         char[] arr = s.toCharArray();
         String denomString = "";
+        //create a string from the characters that come after "/"
         for (int i = divisionIndex+1; i<arr.length; i++) {
             denomString+=arr[i];
         }
         denomString = denomString.trim();
-        int result = Integer.parseInt(denomString);
-        return result;
+        return Integer.parseInt(denomString);
     }
 }
