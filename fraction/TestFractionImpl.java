@@ -11,30 +11,33 @@ public class TestFractionImpl {
     these methods have now been switched to private
     */
 
+    // i and j are both positive numbers
     @Test
     public void greatestCommonDenominatorTest1() {
-        int actual = FractionImpl.greatestCommonDenominator(9, 3);
-        int expected = 3;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void greatestCommonDenominatorTest2() {
         int actual = FractionImpl.greatestCommonDenominator(80, 64);
         int expected = 16;
         assertEquals(expected, actual);
     }
 
+    // Throws an ArithmeticException when i = 0
     @Test (expected = ArithmeticException.class)
-    public void greatestCommonDenominatorTest4() {
+    public void greatestCommonDenominatorTest2() {
         int gcd = FractionImpl.greatestCommonDenominator(0, 61);
     }
 
+    // Throws an ArithmeticException when j = 0
     @Test (expected = ArithmeticException.class)
-    public void greatestCommonDenominator() {
+    public void greatestCommonDenominatorTest3() {
         int gcd = FractionImpl.greatestCommonDenominator(61, 0);
     }
 
+    // Throws an ArithmeticException when i= 0 and j = 0
+    @Test (expected = ArithmeticException.class)
+    public void greatestCommonDenominatorTest4() {
+        int gcd = FractionImpl.greatestCommonDenominator(0, 0);
+    }
+
+    // i and j are negative
     @Test
     public void greatestCommonDenominatorTest5() {
         int actual = FractionImpl.greatestCommonDenominator(-10, -2);
@@ -42,6 +45,15 @@ public class TestFractionImpl {
         assertEquals(expected, actual);
     }
 
+    // i is negative and j is positive
+    @Test
+    public void greatestCommonDenominatorTest6() {
+        int actual = FractionImpl.greatestCommonDenominator(-16, 4);
+        int expected = 4;
+        assertEquals(expected, actual);
+    }
+
+    // No leading or trailing spaces
     @Test
     public void stringToNumeratorTest1() {
         int actual = FractionImpl.stringToNumerator("11/2");
@@ -49,6 +61,7 @@ public class TestFractionImpl {
         assertEquals(expected, actual);
     }
 
+    // Leading and trailing spaces
     @Test
     public void stringToNumeratorTest2() {
         int actual = FractionImpl.stringToNumerator(" 2 / 12");
@@ -56,10 +69,35 @@ public class TestFractionImpl {
         assertEquals(expected, actual);
     }
 
+    // Negative numerator
+    @Test
+    public void stringToNumeratorTest3() {
+        int actual = FractionImpl.stringToNumerator(" -2 / 12");
+        int expected = -2;
+        assertEquals(expected, actual);
+    }
+
+    // No leading or trailing spaces
     @Test
     public void stringToDenominatorTest1() {
         int actual = FractionImpl.stringToDenominator("3/15");
         int expected = 15;
+        assertEquals(expected, actual);
+    }
+
+    // Leading and trailing spaces
+    @Test
+    public void stringToDenominatorTest2() {
+        int actual = FractionImpl.stringToDenominator("33/ 7 ");
+        int expected = 7;
+        assertEquals(expected, actual);
+    }
+
+    // Negative denominator
+    @Test
+    public void stringToDenominatorTest3() {
+        int actual = FractionImpl.stringToDenominator("33/ -7 ");
+        int expected = -7;
         assertEquals(expected, actual);
     }
 
@@ -112,7 +150,7 @@ public class TestFractionImpl {
         assertEquals(expected, actual);
     }
 
-    // r normaises fractions
+    // Constructor normalises fractions
     @Test
     public void FractionImpl3Test1() {
         FractionImpl actual = new FractionImpl("2/4");
@@ -140,8 +178,8 @@ public class TestFractionImpl {
     // Constructor can create fractions from a String representation of an integer
     @Test
     public void FractionImpl3Test4() {
-        FractionImpl actual = new FractionImpl("4");
-        FractionImpl expected = new FractionImpl(4, 1);
+        FractionImpl actual = new FractionImpl("-4");
+        FractionImpl expected = new FractionImpl(-4, 1);
         assertEquals(expected, actual);
     }
 
@@ -426,20 +464,26 @@ public class TestFractionImpl {
         assertEquals(expected, actual);
     }
 
+    // Equal fractions return True
     @Test
     public void equalsTest1() {
         FractionImpl f1 = new FractionImpl(2, 5);
-        FractionImpl f2 = new FractionImpl(2, 5);
+        FractionImpl f2 = new FractionImpl("4/ 10");
         assertTrue(f1.equals(f2));
     }
 
+    // Fractions that are not equal do not return true
     @Test
     public void equalsTest2() {
-        FractionImpl f1 = new FractionImpl(1, 8);
-        FractionImpl f2 = new FractionImpl(8, 64);
-        assertTrue(f1.equals(f2));
+        FractionImpl f1 = new FractionImpl(8);
+        FractionImpl f2 = new FractionImpl("15/8");
+        assertTrue(!f1.equals(f2));
     }
 
+    /*
+     The inverse of a positive fraction, numerator/denominator is equal to
+     denominator/numerator
+     */
     @Test
     public void inverseTest1() {
         FractionImpl f1 = new FractionImpl(2, 5);
@@ -448,6 +492,29 @@ public class TestFractionImpl {
         assertEquals(expected, actual);
     }
 
+    /*
+     The inverse of a negative fraction, -numerator/denominator is equal to
+     -denominator/numerator
+     */
+    @Test
+    public void inverseTest2() {
+        FractionImpl f1 = new FractionImpl("-4 /3");
+        FractionImpl actual = (FractionImpl) f1.inverse();
+        FractionImpl expected = new FractionImpl(-3, 4);
+        assertEquals(expected, actual);
+    }
+
+    /*
+     The inverse of a negative fraction, -numerator/denominator is equal to
+     -denominator/numerator
+     */
+    @Test (expected = ArithmeticException.class)
+    public void inverseTest3() {
+        FractionImpl f1 = new FractionImpl(0, 1);
+        FractionImpl actual = (FractionImpl) f1.inverse();
+    }
+
+    // Comparing positive fractions
     @Test
     public void compareToTest1() {
         FractionImpl f1 = new FractionImpl(4, 5);
@@ -455,6 +522,7 @@ public class TestFractionImpl {
         assertTrue(f1.compareTo(f2)>0);
     }
 
+    // Comparing a positive and negative fraction
     @Test
     public void compareToTest2() {
         FractionImpl f1 = new FractionImpl(-4, 5);
@@ -462,13 +530,23 @@ public class TestFractionImpl {
         assertTrue(f1.compareTo(f2)<0);
     }
 
+    // Comparing negative fractions
     @Test
     public void compareToTest3() {
         FractionImpl f1 = new FractionImpl(4, -16);
-        FractionImpl f2 = new FractionImpl(-1, 4);
+        FractionImpl f2 = new FractionImpl(-1, 3);
+        assertTrue(f1.compareTo(f2)>0);
+    }
+
+    // Comparing equal fractions
+    @Test
+    public void compareToTest4() {
+        FractionImpl f1 = new FractionImpl(-3);
+        FractionImpl f2 = new FractionImpl("-6/2");
         assertTrue(f1.compareTo(f2)==0);
     }
 
+    // Denominator is 1
     @Test
     public void toStringTest1() {
         FractionImpl f = new FractionImpl(5, 1);
@@ -476,11 +554,44 @@ public class TestFractionImpl {
         assertEquals("5", actual);
     }
 
+    // Negative fraction
     @Test
     public void toStringTest2() {
         FractionImpl f = new FractionImpl(-2, 5);
         String actual = f.toString();
         assertEquals("-2/5", actual);
+    }
+
+    // Positive fraction
+    @Test
+    public void toStringTest3() {
+        FractionImpl f = new FractionImpl("4/7");
+        String actual = f.toString();
+        assertEquals("4/7", actual);
+    }
+
+    public static void main(String[] args) {
+        // a short program that uses the Fraction API
+        Fraction f1 = new FractionImpl(4, 6);
+        Fraction f2 = new FractionImpl(2);
+        f2 = f2.negate();
+        Fraction f3 = new FractionImpl("16  /  4  ");
+        Fraction f4 = f1.add(f2).abs();
+        f4 = f4.multiply(f3);
+        System.out.println(f4);
+        f4 = f4.inverse();
+        Fraction f5 = f3.divide(f4);
+        Fraction f6 = new FractionImpl(2);
+        f5 = f5.subtract(f6);
+        System.out.println(f5);
+        if (!f4.equals(f5)) {
+            String s = String.format("%s is not equal to %s", f4.toString(), f5.toString());
+            System.out.println(s);
+        }
+        if (f4.compareTo(f5)<0) {
+            String s = String.format("%s is less than %s", f4.toString(), f5.toString());
+            System.out.println(s);
+        }
     }
 
 }
