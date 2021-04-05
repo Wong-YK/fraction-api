@@ -13,42 +13,42 @@ public class TestFractionImpl {
 
     // i and j are both positive numbers
     @Test
-    public void greatestCommonDenominatorTest1() {
-        int actual = FractionImpl.greatestCommonDenominator(80, 64);
+    public void greatestCommonDivisorTest1() {
+        int actual = FractionImpl.greatestCommonDivisor(80, 64);
         int expected = 16;
         assertEquals(expected, actual);
     }
 
     // Throws an ArithmeticException when i = 0
     @Test (expected = ArithmeticException.class)
-    public void greatestCommonDenominatorTest2() {
-        int gcd = FractionImpl.greatestCommonDenominator(0, 61);
+    public void greatestCommonDivisorTest2() {
+        int gcd = FractionImpl.greatestCommonDivisor(0, 61);
     }
 
     // Throws an ArithmeticException when j = 0
     @Test (expected = ArithmeticException.class)
-    public void greatestCommonDenominatorTest3() {
-        int gcd = FractionImpl.greatestCommonDenominator(61, 0);
+    public void greatestCommonDivisorTest3() {
+        int gcd = FractionImpl.greatestCommonDivisor(61, 0);
     }
 
     // Throws an ArithmeticException when i= 0 and j = 0
     @Test (expected = ArithmeticException.class)
-    public void greatestCommonDenominatorTest4() {
-        int gcd = FractionImpl.greatestCommonDenominator(0, 0);
+    public void greatestCommonDivisorTest4() {
+        int gcd = FractionImpl.greatestCommonDivisor(0, 0);
     }
 
     // i and j are negative
     @Test
-    public void greatestCommonDenominatorTest5() {
-        int actual = FractionImpl.greatestCommonDenominator(-10, -2);
+    public void greatestCommonDivisorTest5() {
+        int actual = FractionImpl.greatestCommonDivisor(-10, -2);
         int expected = 2;
         assertEquals(expected, actual);
     }
 
     // i is negative and j is positive
     @Test
-    public void greatestCommonDenominatorTest6() {
-        int actual = FractionImpl.greatestCommonDenominator(-16, 4);
+    public void greatestCommonDivisorTest6() {
+        int actual = FractionImpl.greatestCommonDivisor(-16, 4);
         int expected = 4;
         assertEquals(expected, actual);
     }

@@ -35,7 +35,7 @@ public class FractionImpl implements Fraction {
         their greatest common denominator
          */
         else {
-            int gcd = greatestCommonDenominator(numerator, denominator);
+            int gcd = greatestCommonDivisor(numerator, denominator);
             this.numerator = numerator/gcd;
             this.denominator = denominator/gcd;
         }
@@ -80,8 +80,8 @@ public class FractionImpl implements Fraction {
             denom = 1;
         }
         /*
-         Pass the int representations of the numerator and denominator to the constructor
-         that takes two int parameters
+         Pass num and denom to the constructor that takes two int arguments
+         to normalise the fraction
          */
         FractionImpl f = new FractionImpl(num,denom);
         this.numerator = f.numerator;
@@ -143,9 +143,8 @@ public class FractionImpl implements Fraction {
             return new FractionImpl(numerator, this.denominator);
         }
         // if the fraction is not negative, it is equal to its absolute value
-        else {
-            return new FractionImpl(this.numerator, this.denominator);
-        }
+        return new FractionImpl(this.numerator, this.denominator);
+
     }
 
     /**
@@ -230,7 +229,7 @@ public class FractionImpl implements Fraction {
     Throws an arithmetic exception where one or both of the parameters
     are equal to 0.
     */
-    public static int greatestCommonDenominator(int i, int j) {
+    public static int greatestCommonDivisor(int i, int j) {
         // return an arithmetic exception if either i or j are equal to 0
         if (i==0 || j==0) {
             throw new ArithmeticException("i and j must be non-zero");
