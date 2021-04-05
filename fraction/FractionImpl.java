@@ -1,6 +1,10 @@
 package fraction;
 
 public class FractionImpl implements Fraction {
+
+    private int numerator;
+    private int denominator;
+
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
      * Normalize the fraction as you create it.
@@ -12,9 +16,6 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
-    private int numerator;
-    private int denominator;
-
     public FractionImpl(int numerator, int denominator) {
         if (denominator==0) {
             throw new ArithmeticException("Denominator must be a non-zero value");
@@ -238,12 +239,16 @@ public class FractionImpl implements Fraction {
                 larger = smaller;
                 smaller = temp;
             }
-            // At each step of the GCD algorithm, larger is updated to equal larger mod smaller
+            // After each iteration, larger is updated to equal larger mod smaller
             larger = larger % smaller;
         }
         return smaller;
     }
 
+    /*
+    Returns an int that is the numerator of a fraction represented
+    by a String, s.
+     */
     public static int stringToNumerator(String s) {
         int divisionIndex = s.indexOf('/');
         char[] arr = s.toCharArray();
@@ -256,6 +261,10 @@ public class FractionImpl implements Fraction {
         return result;
     }
 
+    /*
+    Returns an int that is the denominator of a fraction represented
+    by a String, s.
+     */
     public static int stringToDenominator(String s) {
         int divisionIndex = s.indexOf('/');
         char[] arr = s.toCharArray();
@@ -267,7 +276,4 @@ public class FractionImpl implements Fraction {
         int result = Integer.parseInt(denomString);
         return result;
     }
-
-
-
 }
